@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LaMaLib", "LaMaLib\LaMaLib.vbproj", "{168E3E44-3B71-4263-9E8D-872837F57F84}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LaMaLib.Tests", "LaMaLib.Tests\LaMaLib.Tests.vbproj", "{2FED2CF2-5822-4E2B-99C0-FAC890CD0766}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LaMaLib.Example", "LaMaLib.Example\LaMaLib.Example.vbproj", "{109D20D6-C29A-4C29-98FE-FE1695F7C5FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{168E3E44-3B71-4263-9E8D-872837F57F84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{168E3E44-3B71-4263-9E8D-872837F57F84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{168E3E44-3B71-4263-9E8D-872837F57F84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{168E3E44-3B71-4263-9E8D-872837F57F84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FED2CF2-5822-4E2B-99C0-FAC890CD0766}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FED2CF2-5822-4E2B-99C0-FAC890CD0766}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FED2CF2-5822-4E2B-99C0-FAC890CD0766}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FED2CF2-5822-4E2B-99C0-FAC890CD0766}.Release|Any CPU.Build.0 = Release|Any CPU
+		{109D20D6-C29A-4C29-98FE-FE1695F7C5FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{109D20D6-C29A-4C29-98FE-FE1695F7C5FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{109D20D6-C29A-4C29-98FE-FE1695F7C5FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{109D20D6-C29A-4C29-98FE-FE1695F7C5FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
