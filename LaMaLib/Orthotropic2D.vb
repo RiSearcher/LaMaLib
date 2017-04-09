@@ -148,7 +148,7 @@ Public Class Orthotropic2D
         _Q = _S.Inverse
     End Sub
 
-    Private Function Teps(a As Double) As Matrix
+    Public Shared Function Teps(a As Double) As Matrix
         Dim T As New Matrix(3, 3)
         Dim s As Double = Sin(a * PI / 180)
         Dim c As Double = Cos(a * PI / 180)
@@ -158,7 +158,7 @@ Public Class Orthotropic2D
         Return T
     End Function
 
-    Private Function Tsig(a As Double) As Matrix
+    Public shared Function Tsig(a As Double) As Matrix
         Dim T As New Matrix(3, 3)
         Dim s As Double = Sin(a * PI / 180)
         Dim c As Double = Cos(a * PI / 180)
