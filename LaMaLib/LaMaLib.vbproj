@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="Strain2D.vb" />
     <Compile Include="Stress2D.vb" />
+    <Compile Include="ThinPlate.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

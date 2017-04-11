@@ -14,6 +14,11 @@ Public Class Laminate
         Dim Angle As Double
         Dim Material As Orthotropic2D
         Dim H As Double
+        Public ReadOnly Property Q_bar As Matrix
+            Get
+                Return Material.Q_bar(Angle)
+            End Get
+        End Property
     End Structure
 
     Private _H As Double
@@ -25,11 +30,26 @@ Public Class Laminate
     Private _data_changed As Boolean
     Private _tol As Double = 0.000000000001
 
+    Private _name As String
+    Private _comment As String
 
-
-    Public Sub New()
+    Public Sub New(name As String, Optional comment As String = "")
+        _name = name
+        _comment = comment
         _N = 0
         _H = 0
+        _data_changed = True
+    End Sub
+
+    Public Sub New(name As String, lam() As Layer, Optional comment As String = "")
+        _name = name
+        _comment = comment
+        val = lam
+        _N = val.Length
+        _H = 0
+        For i As Integer = 0 To _N - 1
+            _H += val(i).H
+        Next
         _data_changed = True
     End Sub
 
@@ -193,6 +213,18 @@ Public Class Laminate
         _H += n * _H
         _data_changed = True
     End Sub
+
+    Public Function Sublaminate(name As String, start As Integer, len As Integer, Optional comment As String = "") As Laminate
+        If start < 1 AndAlso start > _N AndAlso start + len > _N Then
+            Throw New Exception("Invalid input data")
+        End If
+        Dim tarr As Layer()
+        ReDim tarr(len - 1)
+        For i As Integer = 0 To len - 1
+            tarr(i) = val(i + start - 1)
+        Next
+        Return New Laminate(name, tarr, comment)
+    End Function
 
 #End Region
 

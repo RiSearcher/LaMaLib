@@ -106,7 +106,7 @@ Public Class Stress2D
     End Property
     Public ReadOnly Property PrincipalAngle As Double
         Get
-            Return 0
+            Return Atan2(2 * Sxy, (Sxx - Syy)) / 2
         End Get
     End Property
     Public ReadOnly Property Mises As Double

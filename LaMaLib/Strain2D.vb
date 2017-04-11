@@ -90,6 +90,22 @@ Public Class Strain2D
     End Property
 
 
+    Public ReadOnly Property MaxPrincipal As Double
+        Get
+            Return (exx + eyy) / 2 + Sqrt((exx - eyy) ^ 2 / 4 + exy ^ 2)
+        End Get
+    End Property
+    Public ReadOnly Property MinPrincipal As Double
+        Get
+            Return (exx + eyy) / 2 - Sqrt((exx - eyy) ^ 2 / 4 + exy ^ 2)
+        End Get
+    End Property
+    Public ReadOnly Property MaxShear As Double
+        Get
+            Return Sqrt((exx - eyy) ^ 2 / 4 + exy ^ 2)
+        End Get
+    End Property
+
 
     Public Shared Function RotationMatrix(angle As Double) As Matrix
         Return Orthotropic2D.Teps(angle)
