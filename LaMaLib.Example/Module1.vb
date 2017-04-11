@@ -9,7 +9,7 @@ Module Module1
 
 
         ' Create new laminate
-        Dim lam As Laminate = New Laminate
+        Dim lam As Laminate = New Laminate("Test")
 
 
         lam.AddLayer(cfrp, 1, 0)
