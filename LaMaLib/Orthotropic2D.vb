@@ -111,6 +111,9 @@ Public Class Orthotropic2D
         data_changed = True
     End Sub
 
+    ''' <summary>
+    ''' Compliance matrix
+    ''' </summary>
     Public ReadOnly Property S As Matrix
         Get
             If data_changed Then
@@ -121,6 +124,22 @@ Public Class Orthotropic2D
         End Get
     End Property
 
+    ''' <summary>
+    ''' Compliance matrix
+    ''' </summary>
+    Public ReadOnly Property S(angle As Double) As Matrix
+        Get
+            If data_changed Then
+                Call CalcSQ()
+                data_changed = False
+            End If
+            Return Teps(angle) * _S * Tsig(angle).Inverse
+        End Get
+    End Property
+
+    ''' <summary>
+    ''' Stiffness matrix
+    ''' </summary>
     Public ReadOnly Property Q As Matrix
         Get
             If data_changed Then
@@ -128,6 +147,19 @@ Public Class Orthotropic2D
                 data_changed = False
             End If
             Return _Q.Clone
+        End Get
+    End Property
+
+    ''' <summary>
+    ''' Stiffness matrix
+    ''' </summary>
+    Public ReadOnly Property Q(angle As Double) As Matrix
+        Get
+            If data_changed Then
+                Call CalcSQ()
+                data_changed = False
+            End If
+            Return Tsig(angle) * _Q * Teps(angle).Inverse
         End Get
     End Property
 
@@ -148,7 +180,11 @@ Public Class Orthotropic2D
         _Q = _S.Inverse
     End Sub
 
-    Private Function Teps(a As Double) As Matrix
+    ''' <summary>
+    ''' Strain rotation matrix.
+    ''' </summary>
+    ''' <param name="a">Angle (degrees).</param>
+    Public Shared Function Teps(a As Double) As Matrix
         Dim T As New Matrix(3, 3)
         Dim s As Double = Sin(a * PI / 180)
         Dim c As Double = Cos(a * PI / 180)
@@ -158,7 +194,11 @@ Public Class Orthotropic2D
         Return T
     End Function
 
-    Private Function Tsig(a As Double) As Matrix
+    ''' <summary>
+    ''' Stress rotation matrix.
+    ''' </summary>
+    ''' <param name="a">Angle (degrees).</param>
+    Public Shared Function Tsig(a As Double) As Matrix
         Dim T As New Matrix(3, 3)
         Dim s As Double = Sin(a * PI / 180)
         Dim c As Double = Cos(a * PI / 180)
@@ -166,14 +206,6 @@ Public Class Orthotropic2D
         T.Row(2) = New Vector({s ^ 2, c ^ 2, -2 * c * s})
         T.Row(3) = New Vector({-c * s, c * s, c ^ 2 - s ^ 2})
         Return T
-    End Function
-
-    Public Function Q_Rotated(a As Double) As Matrix
-        Return Tsig(a) * Q * Teps(a).Inverse
-    End Function
-
-    Public Function S_Rotated(a As Double) As Matrix
-        Return Teps(a) * S * Tsig(a).Inverse
     End Function
 
     Public Function Q_bar(a As Double) As Matrix
