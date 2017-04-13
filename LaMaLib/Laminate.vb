@@ -94,6 +94,14 @@ Public Class Laminate
             Return Me(i).Material
         End Get
     End Property
+    Public Property AssumeSymmetric As Boolean
+        Get
+            Return _assume_symmetric
+        End Get
+        Set(value As Boolean)
+            _assume_symmetric = value
+        End Set
+    End Property
 
 #End Region
 
@@ -667,22 +675,66 @@ Public Class Laminate
 #Region "Effective properties"
     Public ReadOnly Property Ex As Double
         Get
-            Return S_d11 / (S_a11 * S_d11 - S_b11 ^ 2) / _H
+            If _assume_symmetric Then
+                Dim at As Matrix = A
+                at(0, 2) = 0
+                at(1, 2) = 0
+                at(2, 0) = 0
+                at(2, 1) = 0
+                at = at.Inverse
+                Return 1 / _H / at(0, 0)
+            Else
+                'Return S_d11 / (S_a11 * S_d11 - S_b11 ^ 2) / _H
+                Return 1 / (_H * S_a11)
+            End If
         End Get
     End Property
     Public ReadOnly Property Ey As Double
         Get
-            Return S_d22 / (S_a22 * S_d22 - S_b22 ^ 2) / _H
+            If _assume_symmetric Then
+                Dim at As Matrix = A
+                at(0, 2) = 0
+                at(1, 2) = 0
+                at(2, 0) = 0
+                at(2, 1) = 0
+                at = at.Inverse
+                Return 1 / _H / at(1, 1)
+            Else
+                'Return S_d22 / (S_a22 * S_d22 - S_b22 ^ 2) / _H
+                Return 1 / (_H * S_a22)
+            End If
         End Get
     End Property
     Public ReadOnly Property Gxy As Double
         Get
-            Return S_d66 / (S_a66 * S_d66 - S_b66 ^ 2) / _H
+            If _assume_symmetric Then
+                Dim at As Matrix = A
+                at(0, 2) = 0
+                at(1, 2) = 0
+                at(2, 0) = 0
+                at(2, 1) = 0
+                at = at.Inverse
+                Return 1 / _H / at(2, 2)
+            Else
+                'Return S_d66 / (S_a66 * S_d66 - S_b66 ^ 2) / _H
+                Return 1 / (_H * S_a66)
+            End If
         End Get
     End Property
     Public ReadOnly Property nu_xy As Double
         Get
-            Return -(S_a12 * S_d11 - S_b12 * S_b11) / (S_a11 * S_d11 - S_b11 ^ 2)
+            If _assume_symmetric Then
+                Dim at As Matrix = A
+                at(0, 2) = 0
+                at(1, 2) = 0
+                at(2, 0) = 0
+                at(2, 1) = 0
+                at = at.Inverse
+                Return -at(1, 0) / at(0, 0)
+            Else
+                'Return -(S_a12 * S_d11 - S_b12 * S_b11) / (S_a11 * S_d11 - S_b11 ^ 2)
+                Return -S_a12 / S_a11
+            End If
         End Get
     End Property
 

@@ -17,14 +17,13 @@ Module Module1
         lam.AddLayer(cfrp, 1, -45)
         lam.AddLayer(cfrp, 1, 90)
 
-        'lam.AddLayer(cfrp, 1, -45)
-        'lam.AddLayer(cfrp, 1, -45)
-        'lam.AddLayer(cfrp, 1, -45)
-        'lam.AddLayer(cfrp, 1, -45)
-
         ' Print ABD matrix
         Console.WriteLine(lam.ABD.ToString)
+        lam.AssumeSymmetric = False
         Console.WriteLine("Ex: {0}, Ey: {1}, Gxy: {2}, nu_xy: {3}", lam.Ex, lam.Ey, lam.Gxy, lam.nu_xy)
+        lam.AssumeSymmetric = True
+        Console.WriteLine("Ex: {0}, Ey: {1}, Gxy: {2}, nu_xy: {3}", lam.Ex, lam.Ey, lam.Gxy, lam.nu_xy)
+
 
         ' Make symmetric laminate
         lam.MakeSymmetric()
