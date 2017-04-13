@@ -70,7 +70,7 @@ Public Class Laminate
             Return _N
         End Get
     End Property
-    Public ReadOnly Property Thickness As Double
+    Public ReadOnly Property H As Double
         Get
             Return _H
         End Get
