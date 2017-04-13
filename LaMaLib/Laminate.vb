@@ -27,8 +27,9 @@ Public Class Laminate
     Private _abd As Matrix
     Private _abd_inv As Matrix
     Private _a, _b, _d As Matrix
-    Private _data_changed As Boolean
+    Private _data_changed As Boolean = True
     Private _tol As Double = 0.000000000001
+    Private _assume_symmetric As Boolean = True
 
     Private _name As String
     Private _comment As String
@@ -70,7 +71,7 @@ Public Class Laminate
             Return _N
         End Get
     End Property
-    Public ReadOnly Property Thickness As Double
+    Public ReadOnly Property H As Double
         Get
             Return _H
         End Get
@@ -255,6 +256,9 @@ Public Class Laminate
         _abd.Slice(0, 3, 3, 3) = _b
         _abd.Slice(3, 0, 3, 3) = _b
         _abd.Slice(3, 3, 3, 3) = _d
+
+        ' Invalidate ABD inverse
+        _abd_inv = Nothing
 
     End Sub
 
