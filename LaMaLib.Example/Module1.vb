@@ -19,13 +19,17 @@ Module Module1
 
         ' Print ABD matrix
         Console.WriteLine(lam.ABD.ToString)
+        lam.AssumeSymmetric = False
+        Console.WriteLine("Ex: {0}, Ey: {1}, Gxy: {2}, nu_xy: {3}", lam.Ex, lam.Ey, lam.Gxy, lam.nu_xy)
+        lam.AssumeSymmetric = True
+        Console.WriteLine("Ex: {0}, Ey: {1}, Gxy: {2}, nu_xy: {3}", lam.Ex, lam.Ey, lam.Gxy, lam.nu_xy)
+
 
         ' Make symmetric laminate
         lam.MakeSymmetric()
 
         ' Print ABD matrix
         Console.WriteLine(lam.ABD.ToString)
-
         ' Print effective properties
         Console.WriteLine("Ex: {0}, Ey: {1}, Gxy: {2}, nu_xy: {3}", lam.Ex, lam.Ey, lam.Gxy, lam.nu_xy)
 
