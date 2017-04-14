@@ -27,6 +27,18 @@ Public Class Stress2D
         If v.Size <> 3 Then
             Throw New Exception("Invalid vector size")
         End If
+        val = New Matrix(2, 2)
+        val(0, 0) = v(0)
+        val(1, 1) = v(1)
+        val(0, 1) = v(2)
+        val(1, 0) = v(2)
+    End Sub
+
+    Public Sub New(v As Double())
+        If v.Length <> 3 Then
+            Throw New Exception("Invalid vector size")
+        End If
+        val = New Matrix(2, 2)
         val(0, 0) = v(0)
         val(1, 1) = v(1)
         val(0, 1) = v(2)
