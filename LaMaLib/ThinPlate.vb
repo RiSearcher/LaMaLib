@@ -56,7 +56,7 @@ Public Class ThinPlate
 
         Dim eps As Strain2D = New Strain2D(def.Slice(0, 3) + (z - _lam.H / 2) * def.Slice(3, 3))
         Dim sig As Stress2D = New Stress2D()
-        sig.m = _lam(n).Q_bar * eps.m
+        sig.Vec = _lam(n).Q_bar * eps.Vec
 
         Return sig
     End Function
